@@ -1,0 +1,74 @@
+{
+    "name": "homebridge-nest-accfactory",
+    "displayName": "Nest Accfactory",
+    "type": "module",
+    "version": "0.3.8",
+    "description": "Homebridge support for Nest/Google devices including HomeKit Secure Video (HKSV) support for doorbells and cameras",
+    "author": "n0rt0nthec4t",
+    "license": "Apache-2.0",
+    "homepage": "https://github.com/n0rt0nthec4t/homebridge-nest-accfactory/#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/n0rt0nthec4t/homebridge-nest-accfactory.git"
+    },
+    "bugs": {
+        "url": "https://github.com/n0rt0nthec4t/homebridge-nest-accfactory/issues"
+    },
+    "funding": "https://github.com/n0rt0nthec4t/homebridge-nest-accfactory?sponsor=1",
+    "keywords": [
+        "apple home",
+        "homekit",
+        "homebridge-plugin",
+        "homebridge",
+        "hksv",
+        "homekit secure video",
+        "nest",
+        "google",
+        "doorbell",
+        "camera",
+        "thermostat",
+        "temperature",
+        "smoke",
+        "sensor",
+        "floodlight",
+        "hotwater",
+        "lock"
+    ],
+    "main": "dist/index.js",
+    "engines": {
+        "node": "^20 || ^22 || ^24",
+        "homebridge": "^1.11.1 || ^2.0.0-beta.0"
+    },
+    "files": [
+        "LICENSE",
+        "dist/**/*",
+        "config.schema.json",
+        "README.md",
+        "CHANGELOG.md"
+    ],
+    "scripts": {
+        "clean": "rimraf ./dist*",
+        "format": "prettier --write \"src/**/*.{js,mjs}\" && eslint --fix \"src/**/*.{js,mjs}\"",
+        "lint": "eslint \"src/**/*.{js,mjs}\" --fix --max-warnings=20",
+        "build": "npm run clean && copyfiles -u 1 src/*.js dist && copyfiles -u 2 src/HomeKitDevice/*.js dist && copyfiles -u 2 src/HomeKitHistory/*.js dist && copyfiles -u 1 src/res/*.h264 dist && copyfiles -u 1 src/res/*.jpg dist && copyfiles -u 1 'src/protobuf/**/*.proto' dist && copyfiles -u 1 src/plugins/*.js dist",
+        "prepublishOnly": "npm run lint && npm run build"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.39.2",
+        "eslint": "^9.39.2",
+        "@stylistic/eslint-plugin": "^5.7.1",
+        "@types/node": "^25.2.1",
+        "@typescript-eslint/parser": "^8.54.0",
+        "prettier": "^3.8.1",
+        "prettier-eslint": "^16.4.2",
+        "copyfiles": "^2.4.1",
+        "rimraf": "^6.1.2",
+        "homebridge": "^1.11.1 || ^2.0.0-beta.0"
+    },
+    "dependencies": {
+        "@evan/opus": "^1.0.3",
+        "protobufjs": "^8.0.0",
+        "werift": "^0.22.4",
+        "undici": "^7.20.0"
+    }
+}
